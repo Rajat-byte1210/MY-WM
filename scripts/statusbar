@@ -1,0 +1,13 @@
+#!/bin/sh
+# statusbar — feed a polling bar from the mywm IPC socket.
+# The socket server is not implemented in the scaffold, so this currently
+# prints "mywm: offline" once per second.
+
+while :; do
+    if status=$(mywmctl status 2>/dev/null); then
+        printf '%s\n' "$status"
+    else
+        printf 'mywm: offline\n'
+    fi
+    sleep 1
+done

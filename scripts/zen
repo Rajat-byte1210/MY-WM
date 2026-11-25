@@ -1,0 +1,13 @@
+#!/bin/sh
+# zen — monocle + quiet notifications (placeholder).
+#
+# Intended implementation once IPC and bar control exist:
+#   mywmctl layout monocle
+#   hide the bar (external command)
+#   pause notifications (dunstctl set-paused true)
+#
+# This scaffold deliberately keeps the WM out of session policy.
+
+set -eu
+
+mywmctl layout monocle

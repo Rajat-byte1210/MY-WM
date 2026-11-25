@@ -1,0 +1,38 @@
+#!/bin/sh
+# study — project profile launcher (placeholder).
+#
+# Profiles are deliberately outside the WM. They become useful once the IPC
+# server exposes view/layout/spawn. Usage:
+#
+#   study code
+#   study web
+#   study notes
+#
+set -eu
+
+profile=${1:-code}
+
+if ! command -v mywmctl >/dev/null 2>&1; then
+    echo "study: mywmctl not found" >&2
+    exit 1
+fi
+
+case "$profile" in
+code)
+    mywmctl view 1
+    mywmctl layout tile
+    mywmctl spawn "xterm -e nvim"
+    ;;
+web)
+    mywmctl view 2
+    mywmctl spawn "firefox"
+    ;;
+notes)
+    mywmctl view 3
+    mywmctl spawn "xterm -e nvim ~/notes.md"
+    ;;
+*)
+    echo "usage: study [code|web|notes]" >&2
+    exit 2
+    ;;
+esac

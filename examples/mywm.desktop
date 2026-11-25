@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=mywm
+Comment=Minimal student coding window manager
+Exec=mywm
+Type=Application
+DesktopNames=mywm

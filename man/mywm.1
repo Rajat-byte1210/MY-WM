@@ -1,0 +1,108 @@
+.TH MYWM 1 "November 2026" "mywm 0.1.0-m1" "User Commands"
+.SH NAME
+mywm \- minimal student coding window manager
+.SH SYNOPSIS
+.B mywm
+.RB [ \-v | \-\-version ]
+.SH DESCRIPTION
+.B mywm
+is a small X11 window manager intended for keyboard-driven student coding
+sessions. It owns windows and leaves bars, launchers, terminals, editors,
+notification daemons, and compositors as external tools.
+.PP
+This release implements M0 and M1: WM role acquisition, EWMH identity and
+client lists, client lifecycle, borders, focus history, sloppy focus, safe
+close, drag move/resize, master-stack and monocle layouts, gaps, and nine tags
+with per-tag layout memory. Fullscreen, window rules, RandR monitors, IPC,
+scratchpad, and PiP are not implemented yet. See the project README and
+TODO.md for the current state.
+.SH OPTIONS
+.TP
+.BR \-v ", " \-\-version
+Print the version and exit.
+.SH KEYBINDINGS
+.TP
+.B Super+Return
+Spawn the configured terminal.
+.TP
+.B Super+e
+Spawn the configured editor.
+.TP
+.B Super+b
+Spawn the configured browser.
+.TP
+.B Super+d
+Spawn the configured launcher.
+.TP
+.B Super+q
+Close the focused window. A client that supports
+.B WM_DELETE_WINDOW
+is asked to close first; a second request terminates it. Clients that do not
+advertise the protocol are terminated immediately.
+.TP
+.B Super+Shift+q
+Quit the window manager without killing clients.
+.TP
+.B Super+Shift+r
+Restart the window manager in place.
+.TP
+.B Super+Tab
+Toggle between the current and previous tag sets.
+.TP
+.B Super+1 ... Super+9
+View the corresponding tag.
+.TP
+.B Super+Shift+1 ... Super+Shift+9
+Move the focused window to the corresponding tag.
+.TP
+.B Super+Ctrl+1 ... Super+Ctrl+9
+Toggle the corresponding tag alongside the current set.
+.TP
+.B Super+h, Super+j, Super+k, Super+l
+Focus the nearest visible client to the left, below, above, or right.
+.TP
+.B Super+Shift+h, Super+Shift+j, Super+Shift+k, Super+Shift+l
+Swap the focused client with the nearest client in that direction.
+.TP
+.B Super+Ctrl+h / Super+Ctrl+l
+Shrink or grow the master area.
+.TP
+.B Super+Space
+Cycle the current tag's layout between master-stack and monocle.
+.TP
+.B Super+Shift+Space
+Toggle the focused window between tiled and floating.
+.TP
+.B Super+left-drag
+Move a floating window. Dragging a tiled window makes it floating first.
+.TP
+.B Super+right-drag
+Resize a floating window.
+.SH FILES
+.TP
+.I ~/.config/mywm/autostart
+Shell script executed after the WM starts. It is run through
+.IR /bin/sh .
+.SH ENVIRONMENT
+.TP
+.B DISPLAY
+The X display to manage.
+.TP
+.B XDG_RUNTIME_DIR
+Used by
+.B mywmctl
+to locate the control socket once the IPC server is implemented.
+.SH TESTING
+.B make test
+starts
+.BR Xephyr (1),
+checks EWMH startup state, and optionally drives keybindings through XTEST
+when python-xlib is available.
+.SH SEE ALSO
+.BR mywmctl (1),
+.BR Xephyr (1),
+.BR xterm (1)
+.SH BUGS
+There is no IPC server, fullscreen support, window rules, or multi-monitor
+support yet. Report issues with the project's issue tracker when one is
+available.

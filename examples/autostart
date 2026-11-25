@@ -1,0 +1,8 @@
+#!/bin/sh
+# ~/.config/mywm/autostart
+# Run by mywm after it has acquired the WM role. Keep long-lived helpers here.
+
+# xsetroot -solid '#1e1e2e' &
+# polybar -q main &
+# dunst &
+# picom --backend xrender &

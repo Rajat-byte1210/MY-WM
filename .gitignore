@@ -1,0 +1,9 @@
+mywm
+mywmctl
+*.o
+*.core
+core
+tests/*.log
+tests/tmp/
+__pycache__/
+*.pyc

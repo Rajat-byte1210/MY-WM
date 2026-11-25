@@ -1,0 +1,6 @@
+#!/bin/sh
+# Example ~/.xinitrc for mywm.
+# Start the WM last so it owns the session.
+
+xsetroot -solid '#1e1e2e' 2>/dev/null || true
+exec mywm
